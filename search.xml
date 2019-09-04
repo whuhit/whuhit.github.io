@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[为已绑定的自定义域名启用HTTPS访问]]></title>
+    <url>%2F2019%2F09%2F04%2Fhttps-setting%2F</url>
+    <content type="text"><![CDATA[为已绑定的自定义域名启用HTTPS访问打开 DNS 服务商的 DNS 记录修改页面。(我用的是阿里云的DNS) 原来域名 A 记录指向的IP地址是 192.30.252.153 和 192.30.252.154 ，增加下面几个新地址: 185.199.108.153 185.199.109.153 185.199.110.153 185.199.111.153 保存修改后，等待 DNS 记录生效。 然后，打开 GitHub Pages 设置页面： 1、找到处于不可选状态的Enforce HTTPS选项，如果不添加上面几条新的ip地址，旁边会提示: Unavailable for your site because your domain is not properly configured to support HTTPS。 2、将填在Custom domain里的自定义域名清空，保存，然后重新填上自定义域名，再保存。 3、现在可以勾选Enforce HTTPS选项了，这时会提示正在签发证书: Not yet available for your site because the certificate has not finished being issued。 4、证书签发成功后，可以使用 https 链接访问自定义域名了。 参考链接: Troubleshooting custom domains]]></content>
+      <categories>
+        <category>教程</category>
+        <category>hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[pytorch奇技淫巧]]></title>
     <url>%2F2019%2F09%2F03%2Fpytorch%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7%2F</url>
     <content type="text"><![CDATA[pytorch奇技淫巧1、cudnn加速12torch.backends.cudnn.enabled = Truetorch.backends.cudnn.benchmark = True 设置 torch.backends.cudnn.benchmark=True 将会让程序在开始时花费一点额外时间，为整个网络的每个卷积层搜索最适合它的卷积实现算法，进而实现网络的加速。适用场景是网络结构固定（不是动态变化的），网络的输入形状（包括 batch size，图片大小，输入的通道）是不变的，其实也就是一般情况下都比较适用。反之，如果卷积层的设置一直变化，将会导致程序不停地做优化，反而会耗费更多的时间。 那么问题来了，我们需要记住在什么情况下才将这玩意儿设成true呢？ 我的答案是不需要，记那么多东西干啥？？？那不记住咱办？ 试！！！！自己训练模型的时候将这个参数设为false和true，分别体验一下，体验几次后自然就知道了。 2、pytorch如何能够保证模型的可重复性问题背景是这样的： 同样的模型，同样的参数，在GPU上运行的结果和CPU运行的结果有些不一致。 解决办法：在主函数中加上一句 1torch.backends.cudnn.deterministic = True 用以保证实验的可重复性。]]></content>
