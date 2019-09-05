@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[python多日志文件输出]]></title>
+    <url>%2F2019%2F09%2F05%2Fpython%E5%A4%9A%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E8%BE%93%E5%87%BA%2F</url>
+    <content type="text"><![CDATA[12345678910111213141516171819202122232425262728293031323334353637383940class Plog(object): &quot;&quot;&quot;docstring for Plog 级别 何时使用 DEBUG 详细信息，典型地调试问题时会感兴趣。 INFO 证明事情按预期工作。 WARNING 表明发生了一些意外，或者不久的将来会发生问题（如‘磁盘满了’）。软件还是在正常工作。 ERROR 由于更严重的问题，软件已不能执行一些功能了。 CRITICAL 严重错误，表明软件已不能继续运行了。 &quot;&quot;&quot; formatter = logging.Formatter(fmt=&apos;[%(asctime)s.%(msecs)03d] [%(levelname)08s] [%(lineno)03s]: %(message)s&apos;, datefmt=&apos;%Y-%m-%d %H:%M:%S&apos;) def __init__(self, log_file, level=logging.DEBUG): pdir = pathlib.Path(log_file).parent if not pdir.exists(): os.makedirs(pdir) self.log_file = log_file self.level = level self.log_name = str(uuid.uuid1()) # 区分不同日志。 log_setup = logging.getLogger(self.log_name) # 日志文件 handler = logging.FileHandler(self.log_file, mode=&apos;a&apos;) handler.setFormatter(Plog.formatter) # 终端流 streamHandler = logging.StreamHandler() streamHandler.setFormatter(Plog.formatter) log_setup.setLevel(self.level) log_setup.addHandler(handler) log_setup.addHandler(streamHandler)if __name__ == &quot;__main__&quot;: a = Plog(&quot;a/a.log&quot;, level=logging.DEBUG) b = Plog(&quot;b.log&quot;, level=logging.INFO) logging.getLogger(a.log_name).critical(&quot;critical&quot;) logging.getLogger(b.log_name).debug(&quot;debug&quot;)]]></content>
+      <categories>
+        <category>python学习笔记</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[为已绑定的自定义域名启用HTTPS访问]]></title>
     <url>%2F2019%2F09%2F04%2Fhttps-setting%2F</url>
     <content type="text"><![CDATA[为已绑定的自定义域名启用HTTPS访问打开 DNS 服务商的 DNS 记录修改页面。(我用的是阿里云的DNS) 原来域名 A 记录指向的IP地址是 192.30.252.153 和 192.30.252.154 ，增加下面几个新地址: 185.199.108.153 185.199.109.153 185.199.110.153 185.199.111.153 保存修改后，等待 DNS 记录生效。 然后，打开 GitHub Pages 设置页面： 1、找到处于不可选状态的Enforce HTTPS选项，如果不添加上面几条新的ip地址，旁边会提示: Unavailable for your site because your domain is not properly configured to support HTTPS。 2、将填在Custom domain里的自定义域名清空，保存，然后重新填上自定义域名，再保存。 3、现在可以勾选Enforce HTTPS选项了，这时会提示正在签发证书: Not yet available for your site because the certificate has not finished being issued。 4、证书签发成功后，可以使用 https 链接访问自定义域名了。 参考链接: Troubleshooting custom domains]]></content>
