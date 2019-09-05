@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /categories/
+Allow: /tags/ 
+
+
+Sitemap: https://zhifei.online/sitemap.xml
+
+
