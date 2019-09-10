@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[在git中出现中文乱码的解决方案]]></title>
+    <url>%2F2019%2F09%2F10%2F%E5%9C%A8git%E4%B8%AD%E5%87%BA%E7%8E%B0%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%2F</url>
+    <content type="text"><![CDATA[问题：Mac终端使用git status查看的时候中文不能正常显示。 解决办法：1git config --global core.quotepath false]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[MySQL安装使用]]></title>
     <url>%2F2019%2F09%2F10%2FMySQL%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%2F</url>
     <content type="text"><![CDATA[MySQL1、安装1、检测是否已安装 $ service mysql status 如果出现下面的结果则表示已安装 2、安装如果上一步没有安装的话直接安装： $ sudo apt-get install mysql-server mysql-client #安装服务端与客户端 $ sudo apt-get install mysql-workbench #安装可视化工具 3、检测启动状态 $ service mysql status 以下两张图分别是启动和停止状态。 启动mysql： 方式一：sudo /etc/init.d/mysql start方式二：sudo service mysql start 停止mysql： 方式一：sudo /etc/init.d/mysql stop方式二：sudo service mysql stop 重启mysql： 方式一：sudo /etc/init.d/mysql restart方式二：sudo service mysql restart 4、登录初始情况下 root 账户没有密码，这时普通用户并不能直接使用 mysql 命令直接控制台登录，更不能使用 mysql-workbench 直接连接登录。主要是由于 mysql.user 这张表中 root 用户的 plugin 字段值为 auth_socket，改为 mysql_native_password 即可。同时为了方便之后使用，我们在接下来的操作中顺带给 root 账户设置密码。 123456789101112#查看所有用户select host,user from user;#删除用户名为yang，host为%的用户drop user yang\@&apos;%&apos;;#删除数据库drop database &lt;数据库名&gt;;#创建用户并赋予权限GRANT ALL ON *.* TO &apos;yang&apos;@&apos;localhost&apos; WITH GRANT OPTION;#创建数据库CREATE DATABASE file_base_info;#查看当前用户select USER(); 5、远程登录第一、允许MySQL数据库被远程连接编辑/etc/mysql/mysql.conf.d/mysqld.cnf 配置文件，注释bind-address = 127.0.0.1这一行，然后重启MySQL服务。 第二、授权允许远程连接的用户 以授权root用户为例 mysql&gt; grant all privileges on . to root@”%” identified by “password” with grant option;]]></content>
