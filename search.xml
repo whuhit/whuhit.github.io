@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Python类方法与静态方法]]></title>
+    <url>%2F2019%2F10%2F15%2FPython%E5%9F%BA%E7%A1%80%2FPython%E7%B1%BB%E6%96%B9%E6%B3%95%E4%B8%8E%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[classmethod和staticmethod在遇到的项目代码中，在类里面经常看到这两个装饰器。今天就来具体说说这这两货是干嘛的。 一般情况下，我们定义一个类，里面会有一些属性和方法。我们通过类实例化一个对象，这个对象就有了这些属性和方法，就能正常调用了。 Python中的类也是一个普通对象，如果需要直接使用这个类，例如将类作为参数传递到其他函数中，又希望在实例化这个类之前就能提供某些功能。这个时候就需要用到classmethod和staticmethod了。 这两者的区别在于在存在类的继承的情况下对多态的支持不同。 用法看以下的一个简单例子： 12345678910111213141516class A(object): def m1(self, n): print("self:", self) ## self相当于实例化对象本身 @classmethod def m2(cls, n): print("cls:", cls) ## cls相当于类对象本身 @staticmethod def m3(n): passa = A()a.m1(1) A.m2(1) A.m3(1) 什么时候使用classmethod？什么时候用staticmethod？查了很多资料，没看到特别好的说明。可能也只有在多写项目代码后才能体会二者的区别。这里就我个人理解做一点简要说明。 有的时候再实例化之前，就需要先和类做一定的交互。这个时候就需要classmethod或者staticmethod。 如果只是不需要访问类中任何实例方法和属性，仅仅作为一个函数实现某种功能，这种情况下适合使用staticmethod。 其他情况，适合使用classmethod。 再简单一点来说，静态方法就是个一般的函数，完全可以放在类的外面，只不过面象对象一般都是通过类来实现，就把这个函数给封到类里面去了。 欢迎补充关于classmethod和staticmethod的更多细节，欢迎补充。]]></content>
+      <categories>
+        <category>Python学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python多线程与多进程]]></title>
+    <url>%2F2019%2F10%2F15%2FPython%E5%9F%BA%E7%A1%80%2FPython%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%A4%9A%E8%BF%9B%E7%A8%8B%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>Python学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[杂谈之70建国周年]]></title>
     <url>%2F2019%2F10%2F01%2F%E6%9D%82%E6%84%9F%2F%E6%9D%82%E8%B0%88%E4%B9%8B70%E5%BB%BA%E5%9B%BD%E5%91%A8%E5%B9%B4%2F</url>
     <content type="text"><![CDATA[70周年今天的朋友圈格外的热闹，各种段子各种梗玩的不亦乐乎，我们从未如此自豪。 以前，我们只有解放军陆军可以拿来吹嘘一波，自豪一番。现如今，海、空、火箭军一年一个样，舰船饺子搬的下海，20系列飞机也基本形成了战斗力、东风快递也频频亮相。 国庆阅兵中亮相的20系列飞机和东风家族大杀器自不必说，今年格外引人注意的还有我们的女兵。那气质、那笑容，一笑倾国。 20年前1999年5月，美国最先进的一架B-2A隐形轰炸机经过15小时的长途飞行，在南联盟上空，投下5枚精确制导重型炸弹，轰炸了中国驻南斯拉夫联盟大使馆。 消息传来，群情激愤！然而除了群情激愤，除了外交谴责，别无他法！ 这一炸，炸掉了中国民间对美国的全部好感。在此之前，政府一直宣传“帝国主义亡我之心不死”，但是民间对此却没什么反应。很多人都已经深信美国是自由的灯塔，相信美国民主的那套东西。 这一炸也炸醒了中国政府，世界永远是那个世界，落后就要挨打。这是我们第二次学到这一点。耻辱而深刻。 995工程1999年5月美国轰炸中国驻南联盟大使馆后，我们对当时的国防建设和国民经济建设的关系进行了调整，以前是国防建设为经济建设让路，当时改为提出协调发展，同步发展。 在这样一个巨大的刺激之下，中国国防工业部门开会制定了命名为“995”军备发展规划。 今天让我们引以为傲的“东风21D、东风26、31、41”系列战略导弹、“歼20”隐身战机、“001A”型国产航母等都是995工程的产物。 2003年2003年3月，美国绕开联合国直接武装进攻伊拉克。 战争之前，我国当时的预测是美国会陷入与伊拉克的人民战争之中，陷入持久战。结果美军25天就全歼了伊拉克军队。中国震惊，吓出一身冷汗。 这场战争让我们见识到了什么是21世纪的战争。美军在这场战争中使用了几乎所有最先进武器装备系统,包括侦察、预警、导航、定位等强大的卫星天基系统; 大功率电磁干扰、网络干扰和无线电干扰侦察系统; 隐形战斗轰炸机等隐形战略攻击武器; 远射程、抗干扰的精确制导武器等。美军在天、空、海、磁等领域的绝对控制和远程精确制导打击优势得到充分的体现。 不得不说，美国是真的牛逼，也是一个很好的老师。我们与美国的差距要比想象中的更大，也促进我们向信息化作战和协同作战发展。 今天的阅兵中仅仅展示了武器，其实更多的东西没法展示。但是我们却一直在强调信息化作战以及恶劣环境下作战，这一点，军方比我们每个普通人都要更加清醒。 2018美国制裁中兴18年，美国一纸禁令，一个小小的芯片搞残了半个中兴。中国再次被打脸。 落后就要挨打，这一次得刻到骨子里去了。国家再一次加大力度于芯片产业。 之后的华为事件、香港之乱也都扯掉了美国最后的几块遮羞布。当他打得过你的时候他会很优雅的制裁你，当他弄不过你的时候就开始各种下三滥的手段一起上了。从来如此。 尾记不得不说，中国骨子里的天赋注定成为这个世界的超级大国。每一次的打击，只要打不死中国，必定越挫越勇，越打越壮。而能打败中国的，只能是从中国内部打败，外部势力绝无可能。 99年大使馆被炸，催生了995工程，20年后硕果累累。 近两年的贸易战也是如此，且看20年后的中国，到时候我们一定无比怀念今日的特朗普。]]></content>
@@ -57,6 +79,17 @@
       </categories>
       <tags>
         <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[python参数解析工具]]></title>
+    <url>%2F2019%2F09%2F09%2FPython%E5%9F%BA%E7%A1%80%2Fpython%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90%E5%B7%A5%E5%85%B7%2F</url>
+    <content type="text"><![CDATA[absl vs argparse在Python项目中，我们经常看到absl或者argparse的身影。其中，absl是谷歌出品，argparse为Python自带。 这两个都是十分简洁好用的参数解析工具。 先来个直观的感受吧。看看二者的用法。 absl的用法： 12345678910111213141516171819from absl import appfrom absl import flags FLAGS = flags.FLAGS # flags.DEFINE_string("name", None, "Your name.")flags.DEFINE_integer("num_times", 1, "Number of times to print greeting.") # 指定必须输入的参数flags.mark_flag_as_required("name") def main(argv): del argv # 无用 for i in range(0, FLAGS.num_times): print('Hello, %s!' % FLAGS.name) if __name__ == '__main__': app.run(main) # 和tf.app.run()类似 argparse的用法： 123456789101112131415161718192021import argparsedef parse_args(): parser = argparse.ArgumentParser(description='Train segmentation network') parser.add_argument('--cfg', help='experiment configure file name', required=True, type=str) parser.add_argument('opts', help="Modify config options using the command-line", default=None, nargs=argparse.REMAINDER) args = parser.parse_args() return argsdef main(): args = parse_args() print(args.cfg) absl详解用过TensorFlow的肯定知道tf.app.flags的用法和这个absl非常相似。 没错，实质上他俩就是一个东西，同属谷歌出品，只是将其放入了TensorFlow当中。这个absl在很早之前就有了，是谷歌的c++参数解析库。后来很好用才有了python版本。 在之后的TensorFlow版本中，将很多臃肿的工具类库都移除了，tf.app.flags也移除了。所以之后想用的话只能安装absl了。 安装 pip install absl-py 参数类型直接看源码： 123456789101112131415DEFINE_string = _defines.DEFINE_stringDEFINE_boolean = _defines.DEFINE_booleanDEFINE_bool = DEFINE_boolean # Match C++ API.DEFINE_float = _defines.DEFINE_floatDEFINE_integer = _defines.DEFINE_integerDEFINE_enum = _defines.DEFINE_enumDEFINE_enum_class = _defines.DEFINE_enum_classDEFINE_list = _defines.DEFINE_listDEFINE_spaceseplist = _defines.DEFINE_spaceseplistDEFINE_multi = _defines.DEFINE_multiDEFINE_multi_string = _defines.DEFINE_multi_stringDEFINE_multi_integer = _defines.DEFINE_multi_integerDEFINE_multi_float = _defines.DEFINE_multi_floatDEFINE_multi_enum = _defines.DEFINE_multi_enumDEFINE_multi_enum_class = _defines.DEFINE_multi_enum_class 常用的也就以下几种，记住就行了： DEFINE_string DEFINE_float DEFINE_integer 再往下就是： DEFINE_bool (同DEFINE_boolean) DEFINE_enum DEFINE_list 其他的不用管了，有需求的时候再查文档就好了。 定义超级简单，如下。其中三个参数分别是名字、默认值和描述。 123from absl import flags flags.DEFINE_string("name", None, "Your name.") 必须指定的参数flags.mark_flag_as_required(“name”) 参数使用123FLAGS = flags.FLAGS # 使用的时候是大写的FLAGS，其他时候都是小写。print(FLAGS.name) argparse详解Argparse的使用主要有三个步骤： 创建 ArgumentParser() 对象 调用 add_argument() 方法添加参数 使用 parse_args() 解析添加的参数 参数说明add_argument12ArgumentParser.add_argument(name or flags...[, action][, nargs][, const][, default][, type][, choices][, required][, help][, metavar][, dest]) 每个参数解释如下: name or flags - 选项字符串的名字或者列表，例如 foo 或者 -f, –foo。 action - 命令行遇到参数时的动作，默认值是 store。 store_const，表示赋值为const； append，将遇到的值存储成列表，也就是如果参数重复则会保存多个值; append_const，将参数规范中定义的一个值保存到一个列表； count，存储遇到的次数；此外，也可以继承 argparse.Action 自定义参数解析； nargs - 应该读取的命令行参数个数，可以是具体的数字，或者是?号，当不指定值时对于 Positional argument 使用 default，对于 Optional argument 使用 const；或者是 * 号，表示 0 或多个参数；或者是 + 号表示 1 或多个参数。 const - 一个在 action 和 nargs 选项所需的常量值。 default - 不指定参数时的默认值。 type - 命令行参数应该被转换成的类型。 choices - 参数可允许的值的一个容器。 required - 可选参数是否可以省略 (仅针对可选参数)。 help - 参数的帮助信息，当指定为 argparse.SUPPRESS 时表示不显示该参数的帮助信息. metavar - 在 usage 说明中的参数名称，对于必选参数默认就是参数名称（上面的 name or flags），对于可选参数默认是全大写的参数名称. dest - parse_args() 方法返回的对象所添加的属性的名称。默认情况下，对于可选参数选取最长的名称，中划线转换为下划线. 官方示例123456789101112131415161718# 创建了 ArgumentParser 对象，该对象具有解析命令行转为 Python 数据类型的全部信息parser = argparse.ArgumentParser(description='Process some integers.')# 增加参数parser.add_argument('integers', metavar='N', type=int, nargs='+', help='an integer for the accumulator')parser.add_argument('--sum', dest='accumulate', action='store_const', const=sum, default=max, help='sum the integers (default: find the max)')parser.add_argument('--foo', action='store_true')parser.add_argument('--bar', action='store_false')# 调用 parse_args() 会返回对象的两个属性，integers 和 accumulate。 integers 属性是一个列表# 如果在命令行中指定了 --sum，例如 python a.py 1 --sum ，则 accumulate 属性将是 sum() 函数，# 如果没有加上 --sum，例如 python a.py 1，则 accumulate 为 max() 函数&gt;&gt;&gt; parser.parse_args(['--sum', '7', '-1', '42'])Namespace(accumulate=&lt;built-in function sum&gt;, integers=[7, -1, 42]) 这里的 store_const 可以这么理解，它对应的属性是可以手动赋值的，比如这里的 accumulate，该属性值是自动获取： 如果参数中使用了 –sum，那么后面不赋值，accumulate 也会根据取 const 指定的值取值； 如果参数中没有出现 –sum，那么这个可选参数会去 default 指定的值，如果不指定默认值，会取值 None 这里的 store_false 可以这么理解，它对应的属性也是不可以赋值的，是自动获取的： 命令行使用了 –foo，这个属性就为 True，否则为 False 命令行使用了 –bar，这个属性就为 False，否则就为 True 互斥示例123group = parser.add_mutually_exclusive_group()group.add_argument("-v", "--verbose", action="store_true")group.add_argument("-q", "--quiet", action="store_true")]]></content>
+      <categories>
+        <category>Python学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
