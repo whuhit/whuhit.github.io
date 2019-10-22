@@ -17,98 +17,103 @@
   runtime_unit: '天'
 
   
-}</script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、tensor属性"><span class="toc-number">1.</span> <span class="toc-text">1、tensor属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#torch-dtype"><span class="toc-number">1.1.</span> <span class="toc-text">torch.dtype</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#torch-device"><span class="toc-number">1.2.</span> <span class="toc-text">torch.device</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#torch-layout"><span class="toc-number">1.3.</span> <span class="toc-text">torch.layout</span></a></li></ol></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/初识pytorch/pytorch_1.jpg)"><div id="page-header"><span class="pull-left"> <a class="blog_title" id="site-name" href="/">知非</a></span><div class="open toggle-menu pull-right"><div class="menu-icon-first"></div><div class="menu-icon-second"></div><div class="menu-icon-third"></div></div><div class="menu_mask"></div><span class="pull-right menus"><div class="mobile_author_icon"><img class="lozad" src="/img/10763769_110002102000_2_1550882510273.jpg" onerror="onerror=null;src='/img/friend_404.gif'"></div><div class="mobile_post_data"><div class="mobile_data_item text-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">17</div></a></div></div><div class="mobile_data_item text-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">12</div></a></div></div><div class="mobile_data_item text-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">11</div></a></div></div></div><hr><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 目录</span></a><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a><script>document.body.addEventListener('touchstart', function(){ });</script></div></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title"><div class="posttitle">初识Pytorch</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2019-09-02<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> 更新于 2019-09-25</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Pytorch学习笔记/">Pytorch学习笔记</a></span></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h2 id="1、tensor属性"><a href="#1、tensor属性" class="headerlink" title="1、tensor属性"></a>1、tensor属性</h2><p>每一个torch.Tensor都有以下三种属性：</p>
+}</script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-tensor属性"><span class="toc-number">1.</span> <span class="toc-text"> 1、tensor属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#torchdtype"><span class="toc-number">1.1.</span> <span class="toc-text"> torch.dtype</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#torchdevice"><span class="toc-number">1.2.</span> <span class="toc-text"> torch.device</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#torchlayout"><span class="toc-number">1.3.</span> <span class="toc-text"> torch.layout</span></a></li></ol></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/初识pytorch/pytorch_1.jpg)"><div id="page-header"><span class="pull-left"> <a class="blog_title" id="site-name" href="/">知非</a></span><div class="open toggle-menu pull-right"><div class="menu-icon-first"></div><div class="menu-icon-second"></div><div class="menu-icon-third"></div></div><div class="menu_mask"></div><span class="pull-right menus"><div class="mobile_author_icon"><img class="lozad" src="/img/10763769_110002102000_2_1550882510273.jpg" onerror="onerror=null;src='/img/friend_404.gif'"></div><div class="mobile_post_data"><div class="mobile_data_item text-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">18</div></a></div></div><div class="mobile_data_item text-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">13</div></a></div></div><div class="mobile_data_item text-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">12</div></a></div></div></div><hr><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 目录</span></a><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a><script>document.body.addEventListener('touchstart', function(){ });</script></div></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title"><div class="posttitle">初识Pytorch</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2019-09-02<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> 更新于 2019-09-25</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Pytorch学习笔记/">Pytorch学习笔记</a></span></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h2 id="1-tensor属性"><a class="markdownIt-Anchor" href="#1-tensor属性"></a> 1、tensor属性</h2>
+<p>每一个torch.Tensor都有以下三种属性：</p>
 <ul>
 <li>torch.dtype</li>
 <li>torch.device</li>
 <li>torch.layout</li>
 </ul>
-<h3 id="torch-dtype"><a href="#torch-dtype" class="headerlink" title="torch.dtype"></a>torch.dtype</h3><p>PyTorch上的常用数据类型如下，共9种。</p>
+<h3 id="torchdtype"><a class="markdownIt-Anchor" href="#torchdtype"></a> torch.dtype</h3>
+<p>PyTorch上的常用数据类型如下，共9种。</p>
 <table>
 <thead>
 <tr>
-<th align="center">Data type</th>
+<th style="text-align:center">Data type</th>
 <th>dtype</th>
 <th>CPU tensor</th>
 <th>GPU tensor</th>
 <th>Size/bytes</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">32-bit floating</td>
+<tbody>
+<tr>
+<td style="text-align:center">32-bit floating</td>
 <td>torch.float32 or torch.float</td>
 <td>torch.FloatTensor</td>
 <td>torch.cuda.FloatTensor</td>
 <td>4</td>
 </tr>
 <tr>
-<td align="center">64-bit floating</td>
+<td style="text-align:center">64-bit floating</td>
 <td>torch.float64 or torch.double</td>
 <td>torch.DoubleTensor</td>
 <td>torch.cuda.DoubleTensor</td>
 <td>8</td>
 </tr>
 <tr>
-<td align="center">16-bit floating</td>
+<td style="text-align:center">16-bit floating</td>
 <td>torch.float16or torch.half</td>
 <td>torch.HalfTensor</td>
 <td>torch.cuda.HalfTensor</td>
 <td>-</td>
 </tr>
 <tr>
-<td align="center">8-bit integer (unsigned)</td>
+<td style="text-align:center">8-bit integer (unsigned)</td>
 <td>torch.uint8</td>
 <td>torch.ByteTensor</td>
 <td>torch.cuda.ByteTensor</td>
 <td>1</td>
 </tr>
 <tr>
-<td align="center">8-bit integer (signed)</td>
+<td style="text-align:center">8-bit integer (signed)</td>
 <td>torch.int8</td>
 <td>torch.CharTensor</td>
 <td>torch.cuda.CharTensor</td>
 <td>-</td>
 </tr>
 <tr>
-<td align="center">16-bit integer (signed)</td>
+<td style="text-align:center">16-bit integer (signed)</td>
 <td>torch.int16or torch.short</td>
 <td>torch.ShortTensor</td>
 <td>torch.cuda.ShortTensor</td>
 <td>2</td>
 </tr>
 <tr>
-<td align="center">32-bit integer (signed)</td>
+<td style="text-align:center">32-bit integer (signed)</td>
 <td>torch.int32 or torch.int</td>
 <td>torch.IntTensor</td>
 <td>torch.cuda.IntTensor</td>
 <td>4</td>
 </tr>
 <tr>
-<td align="center">64-bit integer (signed)</td>
+<td style="text-align:center">64-bit integer (signed)</td>
 <td>torch.int64 or torch.long</td>
 <td>torch.LongTensor</td>
 <td>torch.cuda.LongTensor</td>
 <td>8</td>
 </tr>
 <tr>
-<td align="center">Boolean</td>
+<td style="text-align:center">Boolean</td>
 <td>torch.bool</td>
 <td>torch.BoolTensor</td>
 <td>torch.cuda.BoolTensor</td>
 <td>-</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>以上PyTorch中的数据类型和numpy中的相对应，占用字节大小也是一样的</p>
 <p>————————————————</p>
-<h3 id="torch-device"><a href="#torch-device" class="headerlink" title="torch.device"></a>torch.device</h3><hr>
+<h3 id="torchdevice"><a class="markdownIt-Anchor" href="#torchdevice"></a> torch.device</h3>
+<hr>
 <p>Torch.device 是表现 torch.Tensor被分配的设备类型的类，其中分为’cpu’ 和 ‘cuda’两种，如果设备序号没有显示则表示此 tensor 被分配到当前设备, 比如: ‘cuda’ 等同于 ‘cuda’: X , X 为torch.cuda.current _device() 返回值</p>
 <p>我们可以通过 tensor.device 来获取其属性，同时可以利用字符或字符+序号的方式来分配设备</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">通过字符串：</span><br><span class="line">&gt;&gt;&gt; torch.device(&apos;cuda:0&apos;)</span><br><span class="line">device(type=&apos;cuda&apos;, index=0)</span><br><span class="line">&gt;&gt;&gt; torch.device(&apos;cpu&apos;)</span><br><span class="line">device(type=&apos;cpu&apos;)</span><br><span class="line">&gt;&gt;&gt; torch.device(&apos;cuda&apos;) # 当前设备</span><br><span class="line">device(type=&apos;cuda&apos;)</span><br><span class="line"></span><br><span class="line">通过字符串和设备序号：</span><br><span class="line">&gt;&gt;&gt; torch.device(&apos;cuda&apos;, 0)</span><br><span class="line">device(type=&apos;cuda&apos;, index=0)</span><br><span class="line">&gt;&gt;&gt; torch.device(&apos;cpu&apos;, 0)</span><br><span class="line">device(type=&apos;cpu&apos;, index=0)</span><br></pre></td></tr></table></figure>
-
 <p>此外，cpu 和 cuda 设备的转换使用 ‘to’ 来实现：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; device_cpu = torch.device(&quot;cpu&quot;)  #声明cpu设备</span><br><span class="line">&gt;&gt;&gt; device_cuda = torch.device(&apos;cuda&apos;)  #设备cuda设备</span><br><span class="line">&gt;&gt;&gt; data = torch.Tensor([1])</span><br><span class="line">&gt;&gt;&gt; data.to(device_cpu)  #将数据转为cpu格式</span><br><span class="line">&gt;&gt;&gt; data.to(device_cuda)   #将数据转为cuda格式</span><br></pre></td></tr></table></figure>
-
-<h3 id="torch-layout"><a href="#torch-layout" class="headerlink" title="torch.layout"></a>torch.layout</h3><p>torch.layout 是表现 torch.Tensor 内存分布的类，目前只支持 torch.strided.<br>另外一种方式torch.sparse_coo正在实验阶段。暂时不用管这个。</p>
+<h3 id="torchlayout"><a class="markdownIt-Anchor" href="#torchlayout"></a> torch.layout</h3>
+<p>torch.layout 是表现 torch.Tensor 内存分布的类，目前只支持 torch.strided.<br>
+另外一种方式torch.sparse_coo正在实验阶段。暂时不用管这个。</p>
 </div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:whuhit09@gmail.com">zhifei</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://zhifei.online/2019/09/02/Pytorch学习笔记/初识pytorch/">http://zhifei.online/2019/09/02/Pytorch学习笔记/初识pytorch/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://zhifei.online">知非</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Pytorch/">Pytorch    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/初识pytorch/pytorch_1.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-buttom"><i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lozad post-qr-code__img" src="/img/wechat.jpg"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lozad post-qr-code__img" src="/img/alipay.jpg"><div class="post-qr-code__desc">支付宝</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="prev-post pull-full"><a href="/2019/09/03/hexo教程/hexo个性化配置/"><img class="prev_cover lozad" data-src="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/hexo个性化配置/hexo_settings.jpeg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>hexo 个性化配置</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2019/09/03/Pytorch学习笔记/pytorch奇技淫巧/" title="Pytorch奇技淫巧"><img class="relatedPosts_cover lozad" data-src="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/pytorch奇技淫巧/PyTorch_Blog-Post_Hero.png"><div class="relatedPosts_title">Pytorch奇技淫巧</div></a></div><div class="relatedPosts_item"><a href="/2019/09/17/深度学习backbone系列/Alexnet基本思想与Pytorch实现/" title="Alexnet基本思想与Pytorch实现"><img class="relatedPosts_cover lozad" data-src="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/BackBone/Alexnet2.jpg"><div class="relatedPosts_title">Alexnet基本思想与Pytorch实现</div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = false == true ? true : false;
 var verify = false == true ? true : false;
 var GUEST_INFO = ['nick','mail','link'];
@@ -129,6 +134,8 @@ window.valine = new Valine({
   pageSize:'10',
   lang:'zh-cn',
   recordIP: true
-});</script></div></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2019 By zhifei</div><div class="framework-info"></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><section class="rightside" id="rightside"><a id="to_comment" href="#post-comment"><i class="scroll_to_comment fa fa-comments"></i></a><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><i class="fa fa-moon-o nightshift" id="nightshift" title="夜间模式"></i></section><div id="post_bottom"><div id="post_bottom_items"><a id="mobile_to_comment" href="#post-comment"><i class="mobile_scroll_to_comment fa fa-comments"></i></a><i class="fa fa-list" id="mobile_toc"></i><div id="toc_mobile"><div class="toc_mobile_headline">目录</div><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#1、tensor属性"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">1、tensor属性</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#torch-dtype"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">torch.dtype</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#torch-device"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">torch.device</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#torch-layout"><span class="toc_mobile_items-number">1.3.</span> <span class="toc_mobile_items-text">torch.layout</span></a></li></ol></li></ol></div></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script async src="/js/search/local-search.js"></script><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="/js/third-party/fireworks.js"></script><script src="/js/nightshift.js"></script><script id="ribbon" src="/js/third-party/canvas-ribbon.js" size="150" alpha="0.6" zindex="-1" data-click="false"></script><script id="ribbon" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/js/piao.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script><script>const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+});</script></div></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2019 By zhifei</div><div class="framework-info"></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><section class="rightside" id="rightside"><a id="to_comment" href="#post-comment"><i class="scroll_to_comment fa fa-comments"></i></a><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><i class="fa fa-moon-o nightshift" id="nightshift" title="夜间模式"></i></section><div id="post_bottom"><div id="post_bottom_items"><a id="mobile_to_comment" href="#post-comment"><i class="mobile_scroll_to_comment fa fa-comments"></i></a><i class="fa fa-list" id="mobile_toc"></i><div id="toc_mobile"><div class="toc_mobile_headline">目录</div><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#1-tensor属性"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text"> 1、tensor属性</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#torchdtype"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text"> torch.dtype</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#torchdevice"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text"> torch.device</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#torchlayout"><span class="toc_mobile_items-number">1.3.</span> <span class="toc_mobile_items-text"> torch.layout</span></a></li></ol></li></ol></div></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script async src="/js/search/local-search.js"></script><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="/js/third-party/fireworks.js"></script><script src="/js/nightshift.js"></script><script id="ribbon" src="/js/third-party/canvas-ribbon.js" size="150" alpha="0.6" zindex="-1" data-click="false"></script><script id="ribbon" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/js/piao.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script><script>const observer = lozad(); // lazy loads elements with default selector as '.lozad'
 observer.observe();</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
- <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/shizuku.model.json"},"display":{"superSample":2,"width":125,"height":125,"position":"left","hOffset":30,"vOffset":-20},"mobile":{"show":false,"scale":0.05},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body></html>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"live2d-widget-model-shizuku"},"display":{"superSample":2,"width":125,"height":125,"position":"left","hOffset":30,"vOffset":-20},"mobile":{"show":false,"scale":0.05},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body></html>
