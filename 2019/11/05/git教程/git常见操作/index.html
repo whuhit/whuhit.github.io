@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>git常见操作 | 知非</title><meta name="description" content="git常见操作"><meta name="keywords" content="git"><meta name="author" content="zhifei,whuhit09@gmail.com"><meta name="copyright" content="zhifei"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/Luffy.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="canonical" href="http://zhifei.online/2019/11/05/git教程/git常见操作/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="git常见操作"><meta name="twitter:description" content="git常见操作"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/git教程/git.png"><meta property="og:type" content="article"><meta property="og:title" content="git常见操作"><meta property="og:url" content="http://zhifei.online/2019/11/05/git教程/git常见操作/"><meta property="og:site_name" content="知非"><meta property="og:description" content="git常见操作"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/git教程/git.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="next" title="深度可分离卷积" href="http://zhifei.online/2019/10/22/深度学习基石系列/深度可分离卷积/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: undefined,
+  highlight_copy: 'true',
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: '添加书签',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天'
+
+  
+}</script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-status-中文编码问题"><span class="toc-number">1.</span> <span class="toc-text"> git status 中文编码问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git文件的三种状态"><span class="toc-number">2.</span> <span class="toc-text"> git文件的三种状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#放弃修改"><span class="toc-number">3.</span> <span class="toc-text"> 放弃修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#比较文件"><span class="toc-number">4.</span> <span class="toc-text"> 比较文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#github上下载单个目录或者文件"><span class="toc-number">5.</span> <span class="toc-text"> GitHub上下载单个目录或者文件</span></a></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/git教程/git.png)"><div id="page-header"><span class="pull-left"> <a class="blog_title" id="site-name" href="/">知非</a></span><div class="open toggle-menu pull-right"><div class="menu-icon-first"></div><div class="menu-icon-second"></div><div class="menu-icon-third"></div></div><div class="menu_mask"></div><span class="pull-right menus"><div class="mobile_author_icon"><img class="lozad" src="/img/10763769_110002102000_2_1550882510273.jpg" onerror="onerror=null;src='/img/friend_404.gif'"></div><div class="mobile_post_data"><div class="mobile_data_item text-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">18</div></a></div></div><div class="mobile_data_item text-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">14</div></a></div></div><div class="mobile_data_item text-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">13</div></a></div></div></div><hr><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 目录</span></a><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a><script>document.body.addEventListener('touchstart', function(){ });</script></div></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title"><div class="posttitle">git常见操作</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2019-11-05<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> 更新于 2019-11-05</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/git教程/">git教程</a></span></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h2 id="git-status-中文编码问题"><a class="markdownIt-Anchor" href="#git-status-中文编码问题"></a> git status 中文编码问题</h2>
+<blockquote>
+<p>git config --global core.quotepath false</p>
+</blockquote>
+<h2 id="git文件的三种状态"><a class="markdownIt-Anchor" href="#git文件的三种状态"></a> git文件的三种状态</h2>
+<p>对于任何一个文件，在 Git 内都只有三种状态：</p>
+<ul>
+<li>已提交（committed）</li>
+<li>已修改（modified）</li>
+<li>已暂存（staged）</li>
+</ul>
+<blockquote>
+<p>已提交表示该文件已经被安全地保存在本地数据库中了；</p>
+</blockquote>
+<blockquote>
+<p>已修改表示修改了某个文件，但还没有提交保存；</p>
+</blockquote>
+<blockquote>
+<p>已暂存表示把已修改的文件放在下次提交时要保存的清单中。</p>
+</blockquote>
+<p>由此我们看到 Git 管理项目时，文件流转的三个工作区域：Git 的工作目录，暂存区域，以及本地仓库。</p>
+<p><img alt data-src="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/git%E6%95%99%E7%A8%8B/1240.png" class="lozad"></p>
+<p>每个项目都有一个 Git 目录（译注：如果 git clone 出来的话，就是其中 .git 的目录；如果 git clone --bare 的话，新建的目录本身就是 Git 目录。），它是 Git 用来保存元数据和对象数据库的地方。该目录非常重要，每次克隆镜像仓库的时候，实际拷贝的就是这个目录里面的数据。</p>
+<p>从项目中取出某个版本的所有文件和目录，用以开始后续工作的叫做工作目录。这些文件实际上都是从 Git 目录中的压缩对象数据库中提取出来的，接下来就可以在工作目录中对这些文件进行编辑。</p>
+<p>所谓的暂存区域只不过是个简单的文件，一般都放在 Git 目录中。有时候人们会把这个文件叫做索引文件，不过标准说法还是叫暂存区域。</p>
+<p>基本的 Git 工作流程如下：</p>
+<ol>
+<li>在工作目录中修改某些文件。</li>
+<li>对修改后的文件进行快照，然后保存到暂存区域。<strong>add</strong></li>
+<li>提交更新，将保存在暂存区域的文件快照永久转储到 Git 目录中。<strong>commit</strong></li>
+</ol>
+<p>所以，我们可以从文件所处的位置来判断状态：如果是 Git 目录中保存着的特定版本文件，就属于已提交状态；如果作了修改并已放入暂存区域，就属于已暂存状态；如果自上次取出后，作了修改但还没有放到暂存区域，就是已修改状态。</p>
+<h2 id="放弃修改"><a class="markdownIt-Anchor" href="#放弃修改"></a> 放弃修改</h2>
+<ol>
+<li>工作区的修改，还未add到暂存区。</li>
+</ol>
+<p>单个文件/文件夹：</p>
+<blockquote>
+<p>git checkout – filename</p>
+</blockquote>
+<p>所有文件/文件夹：</p>
+<blockquote>
+<p>git checkout .</p>
+</blockquote>
+<p>git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</p>
+<ol start="2">
+<li>本地修改/新增了一堆文件，已经git add到暂存区</li>
+</ol>
+<p>单个文件/文件夹：</p>
+<blockquote>
+<p>git reset HEAD filename</p>
+</blockquote>
+<p>所有文件/文件夹：</p>
+<blockquote>
+<p>git reset HEAD .</p>
+</blockquote>
+<ol start="3">
+<li>本地通过git add &amp; git commit 之后，想要撤销此次commit</li>
+</ol>
+<blockquote>
+<p>git reset commit_id<br>
+这个id是你想要回到的那个节点，可以通过git log查看，可以只选前6位<br>
+// 撤销之后，你所做的已经commit的修改还在工作区！</p>
+</blockquote>
+<blockquote>
+<p>git reset --hard commit_id<br>
+这个id是你想要回到的那个节点，可以通过git log查看，可以只选前6位<br>
+// 撤销之后，你所做的已经commit的修改将会清除，仍在工作区/暂存区的代码也将会清除！</p>
+</blockquote>
+<h2 id="比较文件"><a class="markdownIt-Anchor" href="#比较文件"></a> 比较文件</h2>
+<blockquote>
+<p>git diff filename:比较工作区和暂存区</p>
+</blockquote>
+<blockquote>
+<p>git diff HEAD – filename:比较工作区和版本库的最新版本</p>
+</blockquote>
+<h2 id="github上下载单个目录或者文件"><a class="markdownIt-Anchor" href="#github上下载单个目录或者文件"></a> GitHub上下载单个目录或者文件</h2>
+<p>将源地址中的 /tree/master/ 改成 /trunk/</p>
+<p>在终端运行</p>
+<blockquote>
+<p>svn checkout 修改后的地址</p>
+</blockquote>
+<p>如果不是master分支而是其他名字分支的话，将 /trunk/ 换成 /branches/{branchname}/ 就可以了。</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:whuhit09@gmail.com">zhifei</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://zhifei.online/2019/11/05/git教程/git常见操作/">http://zhifei.online/2019/11/05/git教程/git常见操作/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://zhifei.online">知非</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/git/">git    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/git教程/git.png" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-buttom"><i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lozad post-qr-code__img" src="/img/wechat.jpg"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lozad post-qr-code__img" src="/img/alipay.jpg"><div class="post-qr-code__desc">支付宝</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2019/10/22/深度学习基石系列/深度可分离卷积/"><img class="next_cover lozad" data-src="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/深度学习基础/dwp.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>深度可分离卷积</span></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = false == true ? true : false;
+var verify = false == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'hdhEKcOD2bwqBcRDQdRIaiGs-gzGzoHsz',
+  appKey:'ndsg3UuOkoF8wfVI9VygSAyP',
+  placeholder:'留下你的脚印吧...',
+  avatar:'monsterid',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'zh-cn',
+  recordIP: true
+});</script></div></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2019 By zhifei</div><div class="framework-info"></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><section class="rightside" id="rightside"><a id="to_comment" href="#post-comment"><i class="scroll_to_comment fa fa-comments"></i></a><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><i class="fa fa-moon-o nightshift" id="nightshift" title="夜间模式"></i></section><div id="post_bottom"><div id="post_bottom_items"><a id="mobile_to_comment" href="#post-comment"><i class="mobile_scroll_to_comment fa fa-comments"></i></a><i class="fa fa-list" id="mobile_toc"></i><div id="toc_mobile"><div class="toc_mobile_headline">目录</div><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#git-status-中文编码问题"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text"> git status 中文编码问题</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#git文件的三种状态"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text"> git文件的三种状态</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#放弃修改"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text"> 放弃修改</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#比较文件"><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text"> 比较文件</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#github上下载单个目录或者文件"><span class="toc_mobile_items-number">5.</span> <span class="toc_mobile_items-text"> GitHub上下载单个目录或者文件</span></a></li></ol></div></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script async src="/js/search/local-search.js"></script><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="/js/third-party/fireworks.js"></script><script src="/js/nightshift.js"></script><script id="ribbon" src="/js/third-party/canvas-ribbon.js" size="150" alpha="0.6" zindex="-1" data-click="false"></script><script id="ribbon" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/js/piao.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script><script>const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+observer.observe();</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"live2d-widget-model-shizuku"},"display":{"superSample":2,"width":125,"height":125,"position":"left","hOffset":30,"vOffset":-20},"mobile":{"show":false,"scale":0.05},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body></html>
