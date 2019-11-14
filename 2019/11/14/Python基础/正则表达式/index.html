@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>正则表达式 | 知非</title><meta name="description" content="正则表达式"><meta name="keywords" content="Python"><meta name="author" content="zhifei,whuhit09@gmail.com"><meta name="copyright" content="zhifei"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/Luffy.ico"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="canonical" href="http://zhifei.online/2019/11/14/Python基础/正则表达式/"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="正则表达式"><meta name="twitter:description" content="正则表达式"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/Python基础/re.jpg"><meta property="og:type" content="article"><meta property="og:title" content="正则表达式"><meta property="og:url" content="http://zhifei.online/2019/11/14/Python基础/正则表达式/"><meta property="og:site_name" content="知非"><meta property="og:description" content="正则表达式"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/Python基础/re.jpg"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="next" title="git常见操作" href="http://zhifei.online/2019/11/05/git教程/git常见操作/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: undefined,
+  highlight_copy: 'true',
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: '添加书签',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天'
+
+  
+}</script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#re模块"><span class="toc-number">1.</span> <span class="toc-text"> Re模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则语法"><span class="toc-number">2.</span> <span class="toc-text"> 正则语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#re模块使用方法"><span class="toc-number">3.</span> <span class="toc-text"> re模块使用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#match对象介绍"><span class="toc-number">4.</span> <span class="toc-text"> match对象介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正则表达式捕获分组-group"><span class="toc-number">5.</span> <span class="toc-text"> 正则表达式捕获分组 Group</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#贪婪匹配"><span class="toc-number">6.</span> <span class="toc-text"> 贪婪匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最小匹配"><span class="toc-number">7.</span> <span class="toc-text"> 最小匹配</span></a></li></ol></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/Python基础/re.jpg)"><div id="page-header"><span class="pull-left"> <a class="blog_title" id="site-name" href="/">知非</a></span><div class="open toggle-menu pull-right"><div class="menu-icon-first"></div><div class="menu-icon-second"></div><div class="menu-icon-third"></div></div><div class="menu_mask"></div><span class="pull-right menus"><div class="mobile_author_icon"><img class="lozad" src="/img/10763769_110002102000_2_1550882510273.jpg" onerror="onerror=null;src='/img/friend_404.gif'"></div><div class="mobile_post_data"><div class="mobile_data_item text-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">19</div></a></div></div><div class="mobile_data_item text-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">14</div></a></div></div><div class="mobile_data_item text-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">13</div></a></div></div></div><hr><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 目录</span></a><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a><script>document.body.addEventListener('touchstart', function(){ });</script></div></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title"><div class="posttitle">正则表达式</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 发表于 2019-11-14<span class="post-meta__separator">|</span><i class="fa fa-history" aria-hidden="true"></i> 更新于 2019-11-14</time><span class="post-meta__separator mobile_hidden">|</span><span class="mobile_hidden"><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Python学习笔记/">Python学习笔记</a></span></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h2 id="re模块"><a class="markdownIt-Anchor" href="#re模块"></a> Re模块</h2>
+<p>re的英文全拼是regular expression.</p>
+<h2 id="正则语法"><a class="markdownIt-Anchor" href="#正则语法"></a> 正则语法</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">操作符</th>
+<th style="text-align:center">说明</th>
+<th style="text-align:center">实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.</td>
+<td style="text-align:center">表示任何单个字符</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">[ ]</td>
+<td style="text-align:center">字符集， 对单个字符给出取值范围</td>
+<td style="text-align:center">[abc]表示a、b、c， [a‐z]表示a到z单个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">[^ ]</td>
+<td style="text-align:center">非字符集， 对单个字符给出排除范围</td>
+<td style="text-align:center">[^abc]表示非a或b或c的单个字符</td>
+</tr>
+<tr>
+<td style="text-align:center">*</td>
+<td style="text-align:center">前一个字符0次或无限次扩展</td>
+<td style="text-align:center">abc* 表示 ab、abc、abcc、abccc等</td>
+</tr>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">前一个字符1次或无限次扩展</td>
+<td style="text-align:center">abc+ 表示 abc、abcc、abccc等</td>
+</tr>
+<tr>
+<td style="text-align:center">?</td>
+<td style="text-align:center">前一个字符0次或1次扩展</td>
+<td style="text-align:center">abc? 表示 ab、abc</td>
+</tr>
+<tr>
+<td style="text-align:center">|</td>
+<td style="text-align:center">左右表达式任意一个</td>
+<td style="text-align:center">abc | def 表示 abc、def</td>
+</tr>
+<tr>
+<td style="text-align:center">{m}</td>
+<td style="text-align:center">扩展前一个字符m次</td>
+<td style="text-align:center">ab{2}c表示abbc</td>
+</tr>
+<tr>
+<td style="text-align:center">{m,n}</td>
+<td style="text-align:center">扩展前一个字符m至n次（含n）</td>
+<td style="text-align:center">ab{1,2}c表示abc、abbc</td>
+</tr>
+<tr>
+<td style="text-align:center">^</td>
+<td style="text-align:center">匹配字符串开头</td>
+<td style="text-align:center">^abc表示abc且在一个字符串的开头</td>
+</tr>
+<tr>
+<td style="text-align:center">$</td>
+<td style="text-align:center">匹配字符串结尾</td>
+<td style="text-align:center">abc$表示abc且在一个字符串的结尾</td>
+</tr>
+<tr>
+<td style="text-align:center">( )</td>
+<td style="text-align:center">分组标记， 内部只能使用 | 操作符</td>
+<td style="text-align:center">(abc)表示abc， (abc | def)表示abc、def</td>
+</tr>
+<tr>
+<td style="text-align:center">\d</td>
+<td style="text-align:center">数字， 等价于[0‐9]</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">\w</td>
+<td style="text-align:center">单词字符， 等价于[A‐Za‐z0‐9_]</td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="re模块使用方法"><a class="markdownIt-Anchor" href="#re模块使用方法"></a> re模块使用方法</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">text = <span class="string">""</span></span><br><span class="line">pattern = re.compile(<span class="string">r""</span>) <span class="comment"># 正则语法</span></span><br><span class="line">pattern.search(……)</span><br></pre></td></tr></table></figure>
+<p>re库的6个主要函数</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">函数</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">search()</td>
+<td style="text-align:center">在一个字符串中搜索匹配正则表达式的第一个位置， 返回<strong>match</strong>对象</td>
+</tr>
+<tr>
+<td style="text-align:center">match()</td>
+<td style="text-align:center">从一个字符串的开始位置起匹配正则表达式， 返回<strong>match</strong>对象</td>
+</tr>
+<tr>
+<td style="text-align:center">finditer()</td>
+<td style="text-align:center">搜索字符串， 返回一个匹配结果的迭代类型， 每个迭代元素是<strong>match</strong>对象</td>
+</tr>
+<tr>
+<td style="text-align:center">findall()</td>
+<td style="text-align:center">搜索字符串， 以列表类型返回全部能匹配的子串<strong>列表</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">split()</td>
+<td style="text-align:center">将一个字符串按照正则表达式匹配结果进行分割， 返回<strong>列表</strong>类型</td>
+</tr>
+<tr>
+<td style="text-align:center">re.sub()</td>
+<td style="text-align:center">在一个字符串中替换所有匹配正则表达式的子串， 返回替换后的<strong>字符串</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="match对象介绍"><a class="markdownIt-Anchor" href="#match对象介绍"></a> match对象介绍</h2>
+<p>Match对象是一次匹配的结果，包含匹配的很多信息</p>
+<p>4种主要属性</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">属性</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.string</td>
+<td style="text-align:center">待匹配的文本(原文,<strong>非搜索结果</strong>)</td>
+</tr>
+<tr>
+<td style="text-align:center">.re</td>
+<td style="text-align:center">匹配时使用的patter对象（正则表达式）</td>
+</tr>
+<tr>
+<td style="text-align:center">.pos</td>
+<td style="text-align:center">正则表达式搜索文本的开始位置(<strong>非搜索结果的起始位置</strong>)</td>
+</tr>
+<tr>
+<td style="text-align:center">.endpos</td>
+<td style="text-align:center">正则表达式搜索文本的结束位置</td>
+</tr>
+</tbody>
+</table>
+<p>4种方法</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">方法</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">.group(0)</td>
+<td style="text-align:center">获得匹配后的字符串</td>
+</tr>
+<tr>
+<td style="text-align:center">.start()</td>
+<td style="text-align:center">匹配字符串在原始字符串的开始位置</td>
+</tr>
+<tr>
+<td style="text-align:center">.end()</td>
+<td style="text-align:center">匹配字符串在原始字符串的结束位置</td>
+</tr>
+<tr>
+<td style="text-align:center">.span()</td>
+<td style="text-align:center">返回(.start(), .end())</td>
+</tr>
+</tbody>
+</table>
+<h2 id="正则表达式捕获分组-group"><a class="markdownIt-Anchor" href="#正则表达式捕获分组-group"></a> 正则表达式捕获分组 Group</h2>
+<p>group() 方法返回查找的字符串。那怎么得到查找的字符串的某一部分呢？</p>
+<p>比如用正则 d{4}-d{2}-d{2} 提取年月日信息</p>
+<p><img alt data-src="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/Python%E5%9F%BA%E7%A1%80/group0.webp" class="lozad"></p>
+<p>单独把年，月，日提出来可以用小括号 (d{4})-(d{2})-(d{2})</p>
+<p><img alt data-src="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/Python%E5%9F%BA%E7%A1%80/group1.webp" class="lozad"></p>
+<p>group(index) 方法可以按照小括号的顺序，依次提取每个分组信息。如果分组较多的话，使用数字不如用名称提取每个分组信息更方便。语法由 (…) 变为 (?P…)</p>
+<p><img alt data-src="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/Python%E5%9F%BA%E7%A1%80/group3.webp" class="lozad"></p>
+<h2 id="贪婪匹配"><a class="markdownIt-Anchor" href="#贪婪匹配"></a> 贪婪匹配</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>match = re.search(<span class="string">r'PY.*N'</span>, <span class="string">'PYANBNCNDN'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>match.group(<span class="number">0</span>) </span><br><span class="line"><span class="string">'PYANBNCNDN'</span></span><br></pre></td></tr></table></figure>
+<p>同时匹配长短不同的多项，返回哪一个呢？</p>
+<p>Re库默认采用贪婪匹配，即输出匹配最长的子串</p>
+<h2 id="最小匹配"><a class="markdownIt-Anchor" href="#最小匹配"></a> 最小匹配</h2>
+<p>如何输出最短的子串呢？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>match = re.search(<span class="string">r'PY.*?N'</span>, <span class="string">'PYANBNCNDN'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>match.group(<span class="number">0</span>) </span><br><span class="line"><span class="string">'PYAN'</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">操作符</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">*?</td>
+<td style="text-align:center">前一个字符0次或无限次扩展， 最小匹配</td>
+</tr>
+<tr>
+<td style="text-align:center">+?</td>
+<td style="text-align:center">前一个字符1次或无限次扩展， 最小匹配</td>
+</tr>
+<tr>
+<td style="text-align:center">??</td>
+<td style="text-align:center">前一个字符0次或1次扩展，最小匹配</td>
+</tr>
+<tr>
+<td style="text-align:center">{m,n}?</td>
+<td style="text-align:center">扩展前一个字符m至n次（含n）， 最小匹配</td>
+</tr>
+</tbody>
+</table>
+<p>只要长度输出可能不同的，都可以通过在操作符后增加?变成最小匹配</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:whuhit09@gmail.com">zhifei</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://zhifei.online/2019/11/14/Python基础/正则表达式/">http://zhifei.online/2019/11/14/Python基础/正则表达式/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://zhifei.online">知非</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python    </a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/Python基础/re.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script></div></div><div class="post-reward"><a class="reward-buttom"><i class="fa fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><img class="lozad post-qr-code__img" src="/img/wechat.jpg"><div class="post-qr-code__desc">微信</div></li><li class="reward-item"><img class="lozad post-qr-code__img" src="/img/alipay.jpg"><div class="post-qr-code__desc">支付宝</div></li></ul></div></a></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2019/11/05/git教程/git常见操作/"><img class="next_cover lozad" data-src="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/git教程/git.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>git常见操作</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2019/10/15/Python基础/Python类方法与静态方法/" title="Python类方法与静态方法"><img class="relatedPosts_cover lozad" data-src="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/Python基础/classmethod_staticmethod.jpg"><div class="relatedPosts_title">Python类方法与静态方法</div></a></div><div class="relatedPosts_item"><a href="/2019/10/15/Python基础/Python多线程与多进程/" title="Python多线程与多进程"><img class="relatedPosts_cover lozad" data-src="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/Python基础/threading_processing.jpg"><div class="relatedPosts_title">Python多线程与多进程</div></a></div><div class="relatedPosts_item"><a href="/2019/09/06/Python基础/python之pathlib包的使用/" title="python之pathlib包的使用"><img class="relatedPosts_cover lozad" data-src="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/python之pathlib包的使用/pathlib-inheritance.png"><div class="relatedPosts_title">python之pathlib包的使用</div></a></div><div class="relatedPosts_item"><a href="/2019/09/05/Python基础/python多日志文件输出/" title="Python多日志文件输出"><img class="relatedPosts_cover lozad" data-src="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/python多日志文件输出/python.jpeg"><div class="relatedPosts_title">Python多日志文件输出</div></a></div><div class="relatedPosts_item"><a href="/2019/09/09/Python基础/python参数解析工具/" title="python参数解析工具"><img class="relatedPosts_cover lozad" data-src="https://cdn.jsdelivr.net/gh/whuhit/hexoDataPics/post/python参数解析工具/python.png"><div class="relatedPosts_title">python参数解析工具</div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = false == true ? true : false;
+var verify = false == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'hdhEKcOD2bwqBcRDQdRIaiGs-gzGzoHsz',
+  appKey:'ndsg3UuOkoF8wfVI9VygSAyP',
+  placeholder:'留下你的脚印吧...',
+  avatar:'monsterid',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'zh-cn',
+  recordIP: true
+});</script></div></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2019 By zhifei</div><div class="framework-info"></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><section class="rightside" id="rightside"><a id="to_comment" href="#post-comment"><i class="scroll_to_comment fa fa-comments"></i></a><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><i class="fa fa-moon-o nightshift" id="nightshift" title="夜间模式"></i></section><div id="post_bottom"><div id="post_bottom_items"><a id="mobile_to_comment" href="#post-comment"><i class="mobile_scroll_to_comment fa fa-comments"></i></a><i class="fa fa-list" id="mobile_toc"></i><div id="toc_mobile"><div class="toc_mobile_headline">目录</div><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#re模块"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text"> Re模块</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#正则语法"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text"> 正则语法</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#re模块使用方法"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text"> re模块使用方法</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#match对象介绍"><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text"> match对象介绍</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#正则表达式捕获分组-group"><span class="toc_mobile_items-number">5.</span> <span class="toc_mobile_items-text"> 正则表达式捕获分组 Group</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#贪婪匹配"><span class="toc_mobile_items-number">6.</span> <span class="toc_mobile_items-text"> 贪婪匹配</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#最小匹配"><span class="toc_mobile_items-number">7.</span> <span class="toc_mobile_items-text"> 最小匹配</span></a></li></ol></div></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script async src="/js/search/local-search.js"></script><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="/js/third-party/fireworks.js"></script><script src="/js/nightshift.js"></script><script id="ribbon" src="/js/third-party/canvas-ribbon.js" size="150" alpha="0.6" zindex="-1" data-click="false"></script><script id="ribbon" src="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/js/piao.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@1.2.2/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script><script>const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+observer.observe();</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/live2d-widget@^3.1.3/lib/L2Dwidget.min.js"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"live2d-widget-model-shizuku"},"display":{"superSample":2,"width":125,"height":125,"position":"left","hOffset":30,"vOffset":-20},"mobile":{"show":false,"scale":0.05},"react":{"opacityDefault":1,"opacityOnHover":0.2},"log":false});</script></body></html>
