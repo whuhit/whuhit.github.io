@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Squeeze-and-Excitation]]></title>
+    <url>%2F2019%2F11%2F29%2F%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%2FSqueeze-and-Excitation%2F</url>
+    <content type="text"><![CDATA[基本信息 https://arxiv.org/abs/1709.01507 题目:Squeeze-and-Excitation Networks 作者:Jie Hu 时间:2017]]></content>
+      <categories>
+        <category>论文学习笔记与代码实现</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[Mobilenetv2]]></title>
+    <url>%2F2019%2F11%2F29%2F%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%2FMobilenetv2%2F</url>
+    <content type="text"><![CDATA[基本信息 https://arxiv.org/abs/1801.04381 题目:MobileNetV2: Inverted Residuals and Linear Bottlenecks 作者:Mark Sandler 时间:2018 主要内容]]></content>
+      <categories>
+        <category>论文学习笔记与代码实现</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[Swish激活函数]]></title>
     <url>%2F2019%2F11%2F29%2F%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%2FSwish%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%2F</url>
     <content type="text"><![CDATA[基本信息 https://arxiv.org/abs/1710.05941 题目:Searching for Activation Functions 作者:Google Brain 时间:2017 主要内容 自ReLU提出和应用在深度学习模型后，其有效性和简洁性使得大家一直在使用。 作者想通过实验和搜索网络来自动的寻找一种更高效的激活函数。（也只有谷歌等大厂有钱有卡有数据才玩得转）。最后通过实验证明，他们确实找到了一种更高效的激活函数，他们命名为Swish。其函数如下： f(x) = x · sigmoid(βx) 直观图看上去是这样的： 代码实现 1、简洁版 123class Swish(nn.Module): def forward(self, x): return x * torch.sigmoid(x) 2、内存优化版 1234567891011121314151617class SwishImplementation(torch.autograd.Function): @staticmethod def forward(ctx, i): result = i * torch.sigmoid(i) ctx.save_for_backward(i) return result @staticmethod def backward(ctx, grad_output): i = ctx.saved_variables[0] sigmoid_i = torch.sigmoid(i) return grad_output * (sigmoid_i * (1 + i * (1 - sigmoid_i)))class MemoryEfficientSwish(nn.Module): def forward(self, x): return SwishImplementation.apply(x) 以上代码实现来自https://github.com/lukemelas/EfficientNet-PyTorch 使用的时候直接用Swish()或者MemoryEfficientSwish()替代torch.nn.ReLU(). Swish在做预测推理的时候用，MemoryEfficientSwish在训练的时候用。]]></content>
@@ -11,7 +27,7 @@
   <entry>
     <title><![CDATA[EfficientNet以及Pytorch实现]]></title>
     <url>%2F2019%2F11%2F29%2F%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%2FEfficientNet%E4%BB%A5%E5%8F%8APytorch%E5%AE%9E%E7%8E%B0%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[基本信息 https://arxiv.org/abs/1905.11946 题目:EfﬁcientNet: Rethinking Model Scaling for Convolutional Neural Networks 作者:谷歌 Mingxing Tan 1 Quoc V. Le 1 时间:2019 主要内容 现在的深度学习发展，想要提高模型精度，有三种主流方向： 更深的深度 更宽的宽度 更高的输入图像分辨率 以上三条都能提升模型的精度，但是随之而来的问题是模型越来越多，参数量越来越多。 而且精度提高到一定的程度后，再增大模型的性价比非常低。比如文章提到ResNet-1000在深度上是ResNet-101的10倍，但是二者精度差不多，提升非常小。 作者想找到width、depth、和resolution scaling三者之间的一种权衡，在固定的计算资源（参数量和浮点计算量）下，怎样达到最好的模型效果。 先搭建一个base网络EfﬁcientNet-B0，base网络主要用到的是MBConv模块。 另外一些实现细节： 用到了Squeeze-and-Excitation Networks 使用Swish替换了ReLU。 模型结构如下： 然后在计算资源限制的情况下最大化准确率。 暴力美学，接着就是用卡跑出来的结果 α = 1.2, β = 1.1, γ = 1.15。 接着就是固定上面三个值，通过不同的φ来实现B1-B7网络（目前官方还给出了B8模型）。 这里我有点困惑，我们来看下B7中的三个参数，width_coefficient=2.0，depth_coefficient=3.1，resolution=600/224=2.68。 按照论文的说法，固定α = 1.2，那么由depth_coefficient=3.1和下面的公式 求得φ = 6.2。 但是同样的我们由width_coefficient和β计算的φ = 7.3，由resolution和γ计算的φ = 7.05。这三个值并不相同。这与文章的内容有出入。]]></content>
       <categories>
         <category>论文学习笔记与代码实现</category>
       </categories>

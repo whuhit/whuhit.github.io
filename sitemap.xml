@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://zhifei.online/2019/11/29/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/Swish%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</loc>
+    <loc>http://zhifei.online/2019/11/29/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/EfficientNet%E4%BB%A5%E5%8F%8APytorch%E5%AE%9E%E7%8E%B0/</loc>
     
-    <lastmod>2019-11-29T07:01:50.477Z</lastmod>
+    <lastmod>2019-11-29T08:18:26.024Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhifei.online/2019/11/29/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/EfficientNet%E4%BB%A5%E5%8F%8APytorch%E5%AE%9E%E7%8E%B0/</loc>
+    <loc>http://zhifei.online/2019/11/29/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/Mobilenetv2/</loc>
     
-    <lastmod>2019-11-29T06:18:45.750Z</lastmod>
+    <lastmod>2019-11-29T07:40:51.041Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhifei.online/2019/11/29/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/Squeeze-and-Excitation/</loc>
+    
+    <lastmod>2019-11-29T07:38:40.598Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhifei.online/2019/11/29/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/Swish%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0/</loc>
+    
+    <lastmod>2019-11-29T07:01:50.477Z</lastmod>
     
   </url>
   
