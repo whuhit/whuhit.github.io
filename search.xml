@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Swish激活函数]]></title>
+    <url>%2F2019%2F11%2F29%2F%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%2FSwish%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[基本信息 https://arxiv.org/abs/1710.05941 题目:Searching for Activation Functions 作者:Google Brain 时间:2017 主要内容 自ReLU提出和应用在深度学习模型后，其有效性和简洁性使得大家一直在使用。 作者想通过实验和搜索网络来自动的寻找一种更高效的激活函数。（也只有谷歌等大厂有钱有卡有数据才玩得转）。最后通过实验证明，他们确实找到了一种更高效的激活函数，他们命名为Swish。其函数如下： f(x) = x · sigmoid(βx) 直观图看上去是这样的： 代码实现 1、简洁版 123class Swish(nn.Module): def forward(self, x): return x * torch.sigmoid(x) 2、内存优化版 1234567891011121314151617class SwishImplementation(torch.autograd.Function): @staticmethod def forward(ctx, i): result = i * torch.sigmoid(i) ctx.save_for_backward(i) return result @staticmethod def backward(ctx, grad_output): i = ctx.saved_variables[0] sigmoid_i = torch.sigmoid(i) return grad_output * (sigmoid_i * (1 + i * (1 - sigmoid_i)))class MemoryEfficientSwish(nn.Module): def forward(self, x): return SwishImplementation.apply(x) 以上代码实现来自https://github.com/lukemelas/EfficientNet-PyTorch 使用的时候直接用Swish()或者MemoryEfficientSwish()替代torch.nn.ReLU(). Swish在做预测推理的时候用，MemoryEfficientSwish在训练的时候用。]]></content>
+      <categories>
+        <category>论文学习笔记与代码实现</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[EfficientNet以及Pytorch实现]]></title>
+    <url>%2F2019%2F11%2F29%2F%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%2FEfficientNet%E4%BB%A5%E5%8F%8APytorch%E5%AE%9E%E7%8E%B0%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>论文学习笔记与代码实现</category>
+      </categories>
+      <tags>
+        <tag>Pytorch</tag>
+        <tag>Deep Learning</tag>
+        <tag>EfficientNet</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[损失函数合集]]></title>
     <url>%2F2019%2F11%2F20%2F%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%9F%B3%E7%B3%BB%E5%88%97%2F%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%90%88%E9%9B%86%2F</url>
     <content type="text"><![CDATA[最常用的6种损失函数 很多的 loss 函数都有 size_average、reduce 和reduction三个参数. 现在前两个官方已经不推荐使用了. 一般损失函数都是直接计算 batch 的数据，因此返回的 loss 结果都是维度为 (batch_size, ) 的向量。 所以可以通过参数进行结果控制. reduction 的取值为 ‘none’ | ‘mean’ | ‘sum’. 默认为mean “none” 表示不做处理 “sum” 表示取batch_size的和 “mean” 表示取batch_size的均值 1、L1范数损失 L1Loss 计算 output 和 target 之差的绝对值。 12345678910111213141516171819import torchimport torch.nn as nnloss = nn.L1Loss(reduction="none")input_ = torch.randn(1, 2)target = torch.randn(1, 2)output = loss(input_, target)print(input_)print(target)print(output)print(nn.L1Loss(reduction="sum")(input_, target))print(nn.L1Loss()(input_, target))###结果为:tensor([[-1.1805, -1.0040]])tensor([[ 0.6205, -0.3034]])tensor([[1.8010, 0.7006]])tensor(2.5016)tensor(1.2508) 2、均方误差损失 MSELoss 计算 output 和 target 之差的均方差。 12345678910111213141516171819import torchimport torch.nn as nnloss = nn.MSELoss(reduction="none")input_ = torch.randn(1, 2)target = torch.randn(1, 2)output = loss(input_, target)print(input_)print(target)print(output)print(nn.MSELoss(reduction="sum")(input_, target))print(nn.MSELoss()(input_, target))###结果为:tensor([[-1.5865, 0.7328]])tensor([[-0.1690, -0.1935]])tensor([[2.0092, 0.8581]])tensor(2.8673)tensor(1.4336) 3、交叉熵损失 CrossEntropyLoss 当训练有 C 个类别的分类问题时很有效. 可选参数 weight 必须是一个1维 Tensor, 权重将被分配给各个类别. 对于不平衡的训练集非常有效。 在多分类任务中，经常采用 softmax 激活函数+交叉熵损失函数，因为交叉熵描述了两个概率分布的差异，然而神经网络输出的是向量，并不是概率分布的形式。所以需要 softmax激活函数将一个向量进行“归一化”成概率分布的形式，再采用交叉熵损失函数计算 loss。 假设batch_size为2,对于一个二分类模型,最终模型输出output,标签为target,则cost计算方式如下: 1234567891011121314151617181920212223import torchimport torch.nn as nnloss = nn.CrossEntropyLoss()output = torch.tensor([[-2.9, 1.3], [0.3, 0.4] ])target = torch.LongTensor([1, 0])cost = loss(output, target)print(output)print(target)print(cost)###结果为:# tensor([[-2.9000, 1.3000],# [ 0.3000, 0.4000]])# tensor([1, 0])# tensor(0.3796)(-1*math.log(math.exp(1.3)/(math.exp(-2.9)+math.exp(1.3)))-1*math.log(math.exp(0.3)/(math.exp(0.3)+math.exp(0.4))))/2# 0.3796404573727445 4、二进制交叉熵损失 BCELoss 二分类或者多标签二分类时会用到。 target为0或1。 output取值在0——1之间。（常用sigmoid使范围变成0——1） 1234567891011121314import torchimport torch.nn as nnloss = nn.BCELoss()output = torch.tensor([[0.8, 0.8, 0.7], [0.3, 0.4, 0.9] ])target = torch.Tensor([[1, 1, 0], [0, 1, 1]])cost = loss(output, target)print(cost)# tensor(0.5048)# -1*(math.log(0.8)+math.log(0.8)+math.log(0.3)+math.log(0.7)+math.log(0.4)+math.log(0.9))/6 5、BCEWithLogitsLoss BCEWithLogitsLoss损失函数只是把 Sigmoid 层集成到了 BCELoss 类中，就不需要自己再添加一层sigmoid。 6、MultiLabelMarginLoss多标签损失函数 功能： 用于一个样本属于多个类别时的分类任务。例如一个四分类任务，样本x属于第0类，第1类，不属于第2类，第3类。 计算公式： 1234567891011121314151617181920import torchimport torch.nn as nnloss = nn.MultiLabelMarginLoss()x = torch.FloatTensor([[0.1, 0.2, 0.4, 0.8]])# for target y, only consider labels 3 and 0, not after label -1y = torch.LongTensor([[3, 0, -1, 1]])cost = loss(x, y)print(cost)# 0.25 * ((1-(0.1-0.2)) + (1-(0.1-0.4)) + (1-(0.8-0.2)) + (1-(0.8-0.4)))# tensor(0.8500)y = torch.LongTensor([[3, -1, 2, 1]])print(loss(x,y))# 0.25 * ((1-(0.8-0.1)) + (1-(0.8-0.2)) + (1-(0.8-0.4)))# tensor(0.3250)]]></content>
@@ -104,10 +125,10 @@
   </entry>
   <entry>
     <title><![CDATA[Alexnet基本思想与Pytorch实现]]></title>
-    <url>%2F2019%2F09%2F17%2F%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0backbone%E7%B3%BB%E5%88%97%2FAlexnet%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3%E4%B8%8EPytorch%E5%AE%9E%E7%8E%B0%2F</url>
+    <url>%2F2019%2F09%2F17%2F%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%2FAlexnet%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3%E4%B8%8EPytorch%E5%AE%9E%E7%8E%B0%2F</url>
     <content type="text"><![CDATA[前言 说来惭愧，作为一名算法工程师，都没怎么好好读过论文。这几年下来，都是需要什么需求，比如毕设课题是关于目标检测方面的，然后先上github搜代码，再大致看看代码涉及到的论文，再把代码弄下来跑跑自己的数据，稍微修改点参数什么的。 What a shame！！！ 这样下去不行滴。正所谓基础不牢，地动山摇。正好最近鼓捣了一个个人博客，这次就系统性的恶补一下所有的基础知识。并将所有知识整理成个人笔记，也希望遇到志同道合的朋友一起学习学习。 接下来的内容分为两个基础系列，一个是基础骨干网络系列，从Alexnet到resnet，还包括mobilenet以及EfficientNet等；另一个是目标检测系列，包括RCNN全系列、YOLO全系列、SSD等。 所有的博客都将采取论文+代码的形式。 论文内容：解决了现有技术的哪些痛点问题、论文中的一些小技巧和细节。 代码内容：Pytorch、GTX1080Ti、数据集介绍、训练时间、单张图片预测时间、模型大小、参数量多少、浮点运算次数、准确率。 从Alexnet开始 Alexnet可谓是深度学习大狂潮的一个起飞点，他成功的踹开了深度学习的大门，具有里程碑式的意义。 2012年，Alex Krizhevsky、Ilya Sutskever在多伦多大学Geoff Hinton的实验室设计出了一个深层的卷积神经网络AlexNet，夺得了2012年ImageNet LSVRC的冠军，且准确率远超第二名（top5错误率为15.3%，第二名为26.2%），引起了很大的轰动。AlexNet可以说是具有历史意义的一个网络结构，在此之前，深度学习已经沉寂了很长时间，自2012年AlexNet诞生之后，后面的ImageNet冠军都是用卷积神经网络（CNN）来做的，并且层次越来越深，使得CNN成为在图像识别分类的核心算法模型，带来了深度学习的大爆发。 注：Alexnet的出现证明的深度学习的巨大潜力，但是并不能算是深度学习的开端。 深度学习的开端应该是卷积的应用。1989年，LeCun结合反向传播算法与权值共享的卷积神经层发明了卷积神经网络，并首次将卷积神经网络成功应用到美国邮局的手写字符识别系统中。1998年，LeCun提出了卷积神经网络的经典网络模型LeNet-5，再次提高手写字符识别的正确率。 在卷积应用之前，也是有神经网络的，不过那时候的神经网络只能算是一个多层感知机，是神经元全连接的形式。一旦加深网络的层数，参数量会剧增。 论文：imagenet-classification-with-deep-convolutional-neural-networks 现存的问题： 网络的层数比较少，如果增加网络的深度，会导致梯度弥散或者梯度消失，模型参数无法得到有效更新。 模型运算量大，训练时间长。 论文中的创新点： 使用了非线性激活函数：ReLU 防止过拟合的方法：Dropout，数据扩充（Data augmentation） 其他：多GPU实现，LRN归一化层的使用（注：LRN的有效性存在争议，不用的时候反而更好的情况也存在。） 个人感受：可以看到，Alexnet中的几条创新之处都不复杂，看起来都很简单，但是却实实在在的创造了奇迹，打开了一个新时代。 在Alexnet之前也是有卷积这个概念的，也有过成功的应用。但是那时候的卷积神经网络能做到的事情，别的方法也同样能做到，而且还能做的更好。 在这之前，神经网络的发展一度陷入瓶颈期，他存在很多问题，饱受人们质疑。 的确，指出一种理论、一种方法、一种现实中的不足和缺陷是很容易的，我们都能做到。很多人在看出了这么一点点现实的时候就开始有了莫名的优越感，甚至开始指点江山，有那么一种众人皆醉我独醒的感受。 但是啊，指出问题很容易，但是给出解决方案却不容易啊。有的人醉心于前者，有的人却埋头于后者。 好了，废话不多说，回到正题。Alexnet的几点创新之中，个人认为Relu和Dropout是最最关键的两点。 relu relu自然不必说了，没有他，网络根本深不起来。 Dropout Dropout常常被人们所忽略，但是他的重要性不容质疑。“神经网络之父”Hinton在后来很长一段时间里的演讲中都拿Dropout说事。 深度学习的网络表达能力实在太强，以至于他甚至能将每一条训练输入的所有特征都记住，从而很容易导致过拟合。也就是他能将训练数据中的每一条都预测准确，这样的模型在测试集中的表现就很糟糕了。 看上面这张图，绿色线就是过拟合。可以说是很直观了。将一些没用的东西也学到了。 Alexnet的Pytorch实现 代码环境： pytorch 1.2.0 python 3.7 ubuntu 18.04 GTX1080Ti 单GPU 一个好的项目一定要是逻辑清晰的，结构明晰而简单的。给人一种看上去就很赏心悦目的感觉，一定一定不要混乱不堪。 代码结构： 数据加载 模型构建 训练 验证 应用 github 内容 结果 数据集 Caltech256 训练时间 单张图片预测时间 模型大小 参数量多少 浮点运算次数 * 准确率 67% 未完待续]]></content>
       <categories>
-        <category>深度学习backbone系列</category>
+        <category>论文学习笔记与代码实现</category>
       </categories>
       <tags>
         <tag>Pytorch</tag>
