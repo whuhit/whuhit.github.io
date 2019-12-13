@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://zhifei.online/2019/12/13/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AALinux%E5%91%BD%E4%BB%A4/screen/</loc>
+    
+    <lastmod>2019-12-13T09:30:01.758Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://zhifei.online/2019/11/29/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/Mobilenetv2/</loc>
+    
+    <lastmod>2019-12-09T06:55:18.653Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://zhifei.online/2019/11/29/Python%E5%9F%BA%E7%A1%80/%E5%81%8F%E5%87%BD%E6%95%B0/</loc>
     
     <lastmod>2019-11-29T09:02:53.760Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>http://zhifei.online/2019/11/29/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/EfficientNet%E4%BB%A5%E5%8F%8APytorch%E5%AE%9E%E7%8E%B0/</loc>
     
     <lastmod>2019-11-29T08:18:26.024Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://zhifei.online/2019/11/29/%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/Mobilenetv2/</loc>
-    
-    <lastmod>2019-11-29T07:40:51.041Z</lastmod>
     
   </url>
   
@@ -142,14 +149,14 @@
   </url>
   
   <url>
-    <loc>http://zhifei.online/2019/09/07/hexo%E6%95%99%E7%A8%8B/Mac%20%E4%B8%8B%20Hexo%E7%9A%84%E5%AE%89%E8%A3%85/</loc>
+    <loc>http://zhifei.online/2019/09/04/hexo%E6%95%99%E7%A8%8B/https-setting/</loc>
     
     <lastmod>2019-09-30T06:01:24.736Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://zhifei.online/2019/09/04/hexo%E6%95%99%E7%A8%8B/https-setting/</loc>
+    <loc>http://zhifei.online/2019/09/07/hexo%E6%95%99%E7%A8%8B/Mac%20%E4%B8%8B%20Hexo%E7%9A%84%E5%AE%89%E8%A3%85/</loc>
     
     <lastmod>2019-09-30T06:01:24.736Z</lastmod>
     

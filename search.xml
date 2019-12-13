@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[screen]]></title>
+    <url>%2F2019%2F12%2F13%2F%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AALinux%E5%91%BD%E4%BB%A4%2Fscreen%2F</url>
+    <content type="text"><![CDATA[创建一个会话 screen -S notebook 查看会话列表 screen -ls 从会话终端退出 Ctrl + a + d 结束某个会话 screen -X -S 5541 quit 恢复会话 Screen -r 5541]]></content>
+      <categories>
+        <category>每天一个Linux命令</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[偏函数]]></title>
     <url>%2F2019%2F11%2F29%2FPython%E5%9F%BA%E7%A1%80%2F%E5%81%8F%E5%87%BD%E6%95%B0%2F</url>
     <content type="text"><![CDATA[Python的functools模块提供了很多有用的功能，其中一个就是偏函数（Partial function）。 在介绍函数参数的时候，我们讲到，通过设定参数的默认值，可以降低函数调用的难度。而偏函数也可以做到这一点。举例如下： int()函数可以把字符串转换为整数，当仅传入字符串时，int()函数默认按十进制转换： 12&gt;&gt;&gt; int(&apos;12345&apos;)12345 但int()函数还提供额外的base参数，默认值为10。如果传入base参数，就可以做N进制的转换： 1234&gt;&gt;&gt; int(&apos;12345&apos;, base=8)5349&gt;&gt;&gt; int(&apos;12345&apos;, 16)74565 假设要转换大量的二进制字符串，每次都传入int(x, base=2)非常麻烦，于是，我们想到，可以定义一个int2()的函数，默认把base=2传进去： 12def int2(x, base=2): return int(x, base) 这样，我们转换二进制就非常方便了： 1234&gt;&gt;&gt; int2(&apos;1000000&apos;)64&gt;&gt;&gt; int2(&apos;1010101&apos;)85 functools.partial就是帮助我们创建一个偏函数的，不需要我们自己定义int2()，可以直接使用下面的代码创建一个新的函数int2： 123456&gt;&gt;&gt; import functools&gt;&gt;&gt; int2 = functools.partial(int, base=2)&gt;&gt;&gt; int2(&apos;1000000&apos;)64&gt;&gt;&gt; int2(&apos;1010101&apos;)85 所以，简单总结functools.partial的作用就是，把一个函数的某些参数给固定住（也就是设置默认值），返回一个新的函数，调用这个新函数会更简单。 注意到上面的新的int2函数，仅仅是把base参数重新设定默认值为2，但也可以在函数调用时传入其他值： 12&gt;&gt;&gt; int2(&apos;1000000&apos;, base=10)1000000 最后，创建偏函数时，实际上可以接收函数对象、*args和**kw这3个参数，当传入： 1int2 = functools.partial(int, base=2) 实际上固定了int()函数的关键字参数base，也就是： 1int2(&apos;10010&apos;) 相当于： 12kw = &#123; &apos;base&apos;: 2 &#125;int(&apos;10010&apos;, **kw) 当传入： 1max2 = functools.partial(max, 10) 实际上会把10作为*args的一部分自动加到左边，也就是： 1max2(5, 6, 7) 相当于： 12args = (10, 5, 6, 7)max(*args) 结果为10。 小结 当函数的参数个数太多，需要简化时，使用functools.partial可以创建一个新的函数，这个新函数可以固定住原函数的部分参数，从而在调用时更简单。 参考资料-廖雪峰]]></content>
@@ -22,7 +33,7 @@
   <entry>
     <title><![CDATA[Mobilenetv2]]></title>
     <url>%2F2019%2F11%2F29%2F%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0%2FMobilenetv2%2F</url>
-    <content type="text"><![CDATA[基本信息 https://arxiv.org/abs/1801.04381 题目:MobileNetV2: Inverted Residuals and Linear Bottlenecks 作者:Mark Sandler 时间:2018 主要内容]]></content>
+    <content type="text"><![CDATA[基本信息 https://arxiv.org/abs/1801.04381 题目:MobileNetV2: Inverted Residuals and Linear Bottlenecks 作者:Mark Sandler(google) 时间:2018 主要内容]]></content>
       <categories>
         <category>论文学习笔记与代码实现</category>
       </categories>
