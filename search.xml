@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[磁盘永久挂载]]></title>
+    <url>%2F2019%2F12%2F27%2F%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AALinux%E5%91%BD%E4%BB%A4%2F%E7%A3%81%E7%9B%98%E6%B0%B8%E4%B9%85%E6%8C%82%E8%BD%BD%2F</url>
+    <content type="text"><![CDATA[磁盘挂载 1、查看Linux硬盘信息 sudo fdisk -l df -h 2、挂载分区 sudo mount /dev/sdb1 /data 3、查看磁盘分区的UUID sudo blkid 4、配置开机自动挂载 sudo vim /etc/fstab 文件末尾加上： UUID=11263962-9715-473f-9421-0b604e895aaa /data ext4 defaults 0 2]]></content>
+      <categories>
+        <category>每天一个Linux命令</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[目标检测中的一些疑惑]]></title>
+    <url>%2F2019%2F12%2F17%2F%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B9%8B%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%2F%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E7%96%91%E6%83%91%2F</url>
+    <content type="text"><![CDATA[YOLO系列问题 1、YOLOV3中targets如何设置？shape是多少？ 我们知道一个每个box只需要4个值表示坐标，一个值表示类别，那么targets的shape应该是 n*5 ， 但是实际上每一个batch的targets的shape是 n*6，n表示这个batch中的目标个数，6个数中后4位是x,y,w,h，第2位是该目标所属的类别index，（index是从0开始的）。那第一个数是什么呢？看第二个问题。 2、每张图片中目标个数不一样，不同shape的target在一个batch里怎么能放到一起呢？ 在target中增加一位来表示其属于哪一张图片。 比如batch_size设置为4，第一个batch里4张图片中的目标个数分别为4，3，1，2。那么n就是10。这一个batch的targets的shape就是10*6，那这6个数里的第一位就分别是[0,0,0,0,1,1,1,2,3,3]。 3、损失函数如何计算？ YOLOv3的损失函数主要分为三个部分： 目标定位偏移量损失 目标置信度损失 目标分类损失 1、目标定位偏移量损失: 12345mse_loss = nn.MSELoss()loss_x = mse_loss(x[obj_mask], tx[obj_mask])loss_y = mse_loss(y[obj_mask], ty[obj_mask])loss_w = mse_loss(w[obj_mask], tw[obj_mask])loss_h = mse_loss(h[obj_mask], th[obj_mask]) 这里的x,y,w,h为特征图上目标对应位置的预测值。 tx,ty,tw,th是真实值，那这个值是否是我们标注时的值呢？ 不是！！！ 假设我们先在有一张图片，图片大小是416*416，现在有个待检测目标，其坐标值是xmin,ymin,xmax,ymax=[80,120,300,350]。那么其对应的tx,ty,tw,th怎么计算呢？ 同样的原始图像，在不同的特征图里，tx,ty,tw,th是不一样的。比如特征图大小为3*13*13。3表示有三种大小不同的anchor，13是特征图的长和宽。anchors=[(116, 90), (156, 198), (373, 326)] 第一步：确认使用三个anchor中的哪一个去回归坐标。 x,y,w,h = [190,235,220,230] 真实框和三个anchor做iou，选择最大的那一个anchor去回归。 anchor只有长和宽，并没有x,y，如何计算iou呢？看下面文章。iou分别是： 116*90/220/230=0.2063 156*198/220/230=0.6104 220*230/373/326=0.4161 懒人赏析YOLO V2 anchors里面的（156,198）就负责来回归这个目标。 x,y,w,h = [0.457, 0.565, 0.529, 0.553]]]></content>
+      <categories>
+        <category>_posts</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[screen]]></title>
     <url>%2F2019%2F12%2F13%2F%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AALinux%E5%91%BD%E4%BB%A4%2Fscreen%2F</url>
     <content type="text"><![CDATA[创建一个会话 screen -S notebook 查看会话列表 screen -ls 从会话终端退出 Ctrl + a + d 结束某个会话 screen -X -S 5541 quit 恢复会话 Screen -r 5541]]></content>
