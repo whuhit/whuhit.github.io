@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[find命令]]></title>
+    <url>%2F2020%2F01%2F05%2F%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AALinux%E5%91%BD%E4%BB%A4%2Ffind%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[Linux find命令 语法 find path -option 时间戳 atime、ctime与mtime（小时） atime是指access time，即文件被读取或者执行的时间，修改文件是不会改变access time的。 ctime即change time文件状态改变时间，指文件的i结点被修改的时间，如通过chmod修改文件属性，ctime就会被修改。 mtime即modify time，指文件内容被修改的时间。 amin/cmin/mmin选项，根据时间查找(分钟) 1find . –mtime n # n指的是n天, +n、-n、n分别表示： +n:大于n -n:小于n n:等于n 常用示例 查找大小在50MB到100MB之间 find . -size +50M -size -100M 使用名称和忽略案例查找文件 find . -iname test 查找777个权限的文件 find . -type f ! -perm 777 查找可执行文件 find . -perm a=x 查找所有空目录、空文件 find . -type d -empty find . -type f -empty]]></content>
+      <categories>
+        <category>每天一个Linux命令</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[磁盘永久挂载]]></title>
     <url>%2F2019%2F12%2F27%2F%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AALinux%E5%91%BD%E4%BB%A4%2F%E7%A3%81%E7%9B%98%E6%B0%B8%E4%B9%85%E6%8C%82%E8%BD%BD%2F</url>
     <content type="text"><![CDATA[磁盘挂载 1、查看Linux硬盘信息 sudo fdisk -l df -h 2、挂载分区 sudo mount /dev/sdb1 /data 3、查看磁盘分区的UUID sudo blkid 4、配置开机自动挂载 sudo vim /etc/fstab 文件末尾加上： UUID=11263962-9715-473f-9421-0b604e895aaa /data ext4 defaults 0 2]]></content>
