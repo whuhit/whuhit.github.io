@@ -12,6 +12,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[linux三剑客—sed]]></title>
+    <url>%2F2020%2F01%2F17%2F%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AALinux%E5%91%BD%E4%BB%A4%2Flinux%E4%B8%89%E5%89%91%E5%AE%A2%E2%80%94sed%2F</url>
+    <content type="text"><![CDATA[未完待续]]></content>
+      <categories>
+        <category>每天一个Linux命令</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[find命令]]></title>
     <url>%2F2020%2F01%2F05%2F%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AALinux%E5%91%BD%E4%BB%A4%2Ffind%E5%91%BD%E4%BB%A4%2F</url>
     <content type="text"><![CDATA[Linux find命令 语法 find path -option 时间戳 atime、ctime与mtime（小时） atime是指access time，即文件被读取或者执行的时间，修改文件是不会改变access time的。 ctime即change time文件状态改变时间，指文件的i结点被修改的时间，如通过chmod修改文件属性，ctime就会被修改。 mtime即modify time，指文件内容被修改的时间。 amin/cmin/mmin选项，根据时间查找(分钟) 1find . –mtime n # n指的是n天, +n、-n、n分别表示： +n:大于n -n:小于n n:等于n 常用示例 查找大小在50MB到100MB之间 find . -size +50M -size -100M 使用名称和忽略案例查找文件 find . -iname test 查找777个权限的文件 find . -type f ! -perm 777 查找可执行文件 find . -perm a=x 查找所有空目录、空文件 find . -type d -empty find . -type f -empty]]></content>
