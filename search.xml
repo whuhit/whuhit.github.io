@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[linux三剑客—awk]]></title>
+    <url>%2F2020%2F01%2F23%2F%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AALinux%E5%91%BD%E4%BB%A4%2Flinux%E4%B8%89%E5%89%91%E5%AE%A2%E2%80%94awk%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>每天一个Linux命令</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[linux三剑客—grep]]></title>
     <url>%2F2020%2F01%2F17%2F%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AALinux%E5%91%BD%E4%BB%A4%2Flinux%E4%B8%89%E5%89%91%E5%AE%A2%E2%80%94grep%2F</url>
     <content type="text"><![CDATA[写在前面 awk、grep、sed是linux操作文本的三大利器，合称文本三剑客。掌握其中两个基本上就可以横着走了，掌握三个更是江湖无敌了。 其中，grep适合单纯的查找或匹配文本，sed更适合编辑匹配到的文本，awk适合格式化文本，对文本进行较复杂格式处理。 如何使用 这个可以通过 man grep 查看详情。 命令格式 grep [option] pattern file 命令参数 这里我就不全介绍了。只列出常用的。 -A&lt;显示行数&gt;：除了显示符合范本样式的那一列之外，并显示该行之后的内容。 after -B&lt;显示行数&gt;：除了显示符合样式的那一行之外，并显示该行之前的内容。before -C&lt;显示行数&gt;：除了显示符合样式的那一行之外，并显示该行之前后的内容。 -c：统计匹配的行数 count -e ：实现多个选项间的逻辑or 关系 -f FILE：将PATTERN匹配模式写在文件里用 -i --ignore-case #忽略字符大小写的差别。 -n：显示匹配的行号 -o：仅显示匹配到的字符串 不显示其他内容 -v：显示不被pattern 匹配到的行，相当于[^] 反向匹配 -w：匹配 整个单词。比如一行中有“hello”，如果只用“hell”就匹配不到 -x：跟-w差不多意思，匹配整行。如果一行里有空格，也需要在pattern里体现出来。 -l：显示匹配到的文件 -L：和-l相反，如果显示没有pattern的文件。 实战应用 先生成一个文件吧，就直接用下面这个来举例了： man grep &gt; grep.txt after before central -c count 只计数 -o -w 与 -x 1.txt里什么都没有。如果一个项目里有非常多的源码，自己记得某行代码但是忘了在哪个文件里，这个命令就非常有用了。 有一点需要注意，就是在’'里面第一个‘-’会报错，这里需要加上一个转义符。]]></content>
