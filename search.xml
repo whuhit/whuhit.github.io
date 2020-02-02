@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[linux三剑客—awk]]></title>
     <url>%2F2020%2F01%2F23%2F%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AALinux%E5%91%BD%E4%BB%A4%2Flinux%E4%B8%89%E5%89%91%E5%AE%A2%E2%80%94awk%2F</url>
-    <content type="text"><![CDATA[写在前面 awk实在是太强大了，它单独就可以是一门编程语言。所以一直拖着没写。现在闲了太久，该来的还是要来的。 AWK是一种处理文本文件的语言，是一个强大的文本分析工具。 之所以叫AWK是因为其取了三位创始人 Alfred Aho，Peter Weinberger, 和 Brian Kernighan 的 Family Name 的首字符。]]></content>
+    <content type="text"><![CDATA[写在前面 awk实在是太强大了，它单独就可以是一门编程语言。所以一直拖着没写。现在闲了太久，该来的还是要来的。 AWK是一种处理文本文件的语言，是一个强大的文本分析工具。 之所以叫AWK是因为其取了三位创始人 Alfred Aho，Peter Weinberger, 和 Brian Kernighan 的 Family Name 的首字符。 awk的格式 awk指令是由模式，动作，或者模式和动作的组合组成。 模式既pattern,可以类似理解成sed的模式匹配，可以由表达式组成，也可以是两个正斜杠之间的正则表达式。比如NR==1，这就是模式，可以把他理解为一个条件。 动作即action，是由在大括号里面的一条或多条语句组成，语句之间使用分号隔开。比如awk使用格式：]]></content>
       <categories>
         <category>每天一个Linux命令</category>
       </categories>
