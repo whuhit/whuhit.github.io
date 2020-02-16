@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[linux多命令]]></title>
+    <url>%2F2020%2F02%2F16%2F%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AALinux%E5%91%BD%E4%BB%A4%2Flinux%E5%A4%9A%E5%91%BD%E4%BB%A4%2F</url>
+    <content type="text"><![CDATA[多命令执行顺序 12345多命令执行符 格式 作用 ; 命令1;命令2 多个命令顺序执行，命令之间无任何逻辑关系 &amp;&amp; 命令1&amp;&amp;命令2 逻辑与：当命令1正确执行后，命令2才会正确执行，否则命令2不会执行 || 命令1||命令2 逻辑或：当命令1不正确执行后，命令2才会正确执行，否则命令2不会执行 管道符 | 123命令格式： 命令1| 命令2作用：命令1的正确出书作为命令2的操作对象 通常来说，很多命令不支持|管道来传递参数，这个时候xargs就来了，可以说xargs基本上就是为管道符而生的，在其他地方几乎没什么用，配合管道符一起才有点作用。 xargs命令的作用，是将标准输入转为命令行参数。 看下面的例子： 看下管道符完整的使用示例： find . -name .DS_Store -type f | xargs rm -exec find . -name .DS_Store -type f -exec rm {} ;]]></content>
+      <categories>
+        <category>每天一个Linux命令</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[time与datatime]]></title>
     <url>%2F2020%2F02%2F07%2FPython%E5%9F%BA%E7%A1%80%2Ftime%E4%B8%8Edatatime%2F</url>
     <content type="text"></content>
